@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+option csharp_namespace = "rss.grpc.server";
+
+package rss;
+
+service RssFeeder {
+    rpc NewClient (NewClientRequest) returns (ClientInfo);
+    rpc Subscribe (SubscriprionRequest) returns(SubscriptionResponse);
+    rpc Unsubscribe (SubscriprionRequest) returns(SubscriptionResponse);
+    rpc ReadFeeds (ClientInfo) returns (stream FeedInfo);
+}
+
+message NewClientRequest {
+    string Name = 1;
+    string Email = 2;
+}
+
+message SubscriprionRequest {
+    int32 ClientId = 1;
+    string Tag = 2; 
+}
+
+message SubscriptionResponse {
+    bool Result = 1;
+}
+
+message ClientInfo {
+    int32 ClientId = 1;
+}
+
+message FeedInfo {
+    repeated string Tags = 1;
+    string FeedXml = 2;
+}

@@ -1,0 +1,35 @@
+﻿<Window x:Class="rss.grpc.client.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:rss.grpc.client"
+        xmlns:properties="clr-namespace:rss.grpc.client.Properties"
+        mc:Ignorable="d"
+        Title="RSS Client" Height="450" Width="800" Icon="/rss.png" Loaded="Window_Loaded">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="250"/>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition />
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+        <TextBlock VerticalAlignment="Center" Margin="4,0">Subscription Tags:</TextBlock>
+        <ListBox Grid.Row="1"  Name="tagList" SelectionChanged="tagList_SelectionChanged"></ListBox>
+        <StackPanel Orientation="Horizontal" Grid.Row="2">
+            <Button Width="28" Margin="1,1" ToolTip="New Tag..." Foreground="Blue" Name="addTagButton" Click="addTagButton_Click">+</Button>
+            <Button Width="28" Margin="1,1" ToolTip="Remove Tag..." Foreground="Red" Name="removeTagButton" Click="removeTagButton_Click" IsEnabled="False">-</Button>
+            <Button Width="28" Margin="1,1" ToolTip="Edit Tag..." Foreground="Green" Name="editTagButton" Click="editTagButton_Click" IsEnabled="False">E</Button>
+        </StackPanel>
+        <TextBlock Grid.Column="1" VerticalAlignment="Center" Margin="4,0">News:</TextBlock>
+        <WebBrowser Grid.Column="1" Grid.Row="1" Name="rssBrowser"></WebBrowser>
+        <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Margin="4,0">
+            <TextBlock>Feeds loaded:</TextBlock>
+            <TextBlock Text="{Binding LoadedCount}" Margin="2,0"></TextBlock>
+            <TextBlock Margin="2,0" Foreground="LightGray">[empty feeds are hidden]</TextBlock>
+        </StackPanel>
+    </Grid>
+</Window>
